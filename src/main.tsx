@@ -9,5 +9,5 @@ ReactDOM.createRoot(document.querySelector('#root') as HTMLElement).render(
     <QueryClientProvider client={new QueryClient()}>
       <App />
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

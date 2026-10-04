@@ -72,6 +72,24 @@ export default class SpaceShip {
     return this._state;
   }
 
+  public removeBullet(bullet: Bullet): void {
+    this._state.bullets = this._state.bullets.filter((b) => b !== bullet);
+  }
+
+  public checkHit(bullet: Bullet): boolean {
+    const { x: bx, y: by } = bullet.state;
+    const { x, y } = this._state;
+    return bx > x + 8 && bx < x + 72 && by > y + 8 && by < y + 72;
+  }
+
+  public reset(): void {
+    this._state.x = this._canvas.width / 2 - 25;
+    this._state.y = this.Yboundary.bottom - 10;
+    this._state.bullets = [];
+    this._state.imageType = 'forward';
+    this._pressedKeysTrackingMap.clear();
+  }
+
   public eventDistributor(e: Event) {
     if (e.type === 'keydown') this.onKeyDown(e as KeyboardEvent);
     if (e.type === 'keyup') this.onKeyUp(e as KeyboardEvent);
